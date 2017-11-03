@@ -65,7 +65,7 @@ public class EndpointTask extends AsyncTask<String,String, String> {
         super.onPostExecute(o);
         Log.d("TAG","RETURNVAL"+String.valueOf(o));
         if(taskCompleteListener!=null){
-            taskCompleteListener.OnComplete(result);
+            taskCompleteListener.OnComplete(o);
             Log.d("TASG","RESULTTTTT"+o.toString());
         }
         else {
