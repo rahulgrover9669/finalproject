@@ -60,13 +60,20 @@ public class EndpointTask extends AsyncTask<String,String, String> {
     }
 
 
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-    //   Toast.makeText(this.context, s, Toast.LENGTH_LONG).show();
-      //        Intent intent = new Intent(context, MainActivity2.class);
-      //  intent.putExtra("joker", s);
-      //  context.startActivity(intent);
-      //  Toast.makeText(this.context, "RESULT", Toast.LENGTH_LONG).show();
+   @Override
+    protected void onPostExecute(String o) {
+        super.onPostExecute(o);
+        Log.d("TAG","RETURNVAL"+String.valueOf(o));
+        if(taskCompleteListener!=null){
+            taskCompleteListener.OnComplete(result);
+            Log.d("TASG","RESULTTTTT"+o.toString());
+        }
+        else {
+            Log.d("TASG","RESULTTTTT");
+        }
+    }
+
+    public static interface TaskCompleteListener {
+        public void OnComplete(String message);
     }
 }
