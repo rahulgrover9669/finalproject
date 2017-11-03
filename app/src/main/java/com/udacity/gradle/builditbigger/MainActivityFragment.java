@@ -31,7 +31,17 @@ public class MainActivityFragment extends Fragment {
     Button button;
     public MainActivityFragment() {
     }
-
+ public String GetJoke(){
+        try {
+            res = new EndpointTask().execute().get();
+            Log.d("RESVALUE","RESVALUE test"+res);
+            return  res;
+        } catch (InterruptedException | ExecutionException  e) {
+            Log.d("RESVALUE","RESVALUE test2"+res);
+           return e.toString();
+        }
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,15 +89,16 @@ public class MainActivityFragment extends Fragment {
 
                 
                 
-                EndpointTask endpointTask = new EndpointTask();
+                  EndpointTask endpointTask = new EndpointTask();
                 endpointTask.setListener(new EndpointTask.TaskCompleteListener() {
                     @Override
                     public void OnComplete(String message) {
                         Log.d("TASG","RESULTTTTT1"+message);
                     }
                 }).execute();
-                
-                
+
+                String x = GetJoke();
+                Toast.makeText(getActivity(),x+"tested",Toast.LENGTH_SHORT).show();
 
             }
         });
