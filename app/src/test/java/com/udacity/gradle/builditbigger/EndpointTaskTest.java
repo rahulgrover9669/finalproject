@@ -20,37 +20,32 @@ import static org.junit.Assert.*;
  * Created by Rahul on 23/10/2017.
  */
 
-public class EndpointTaskTest extends TestRunner {
-    public EndpointTaskTest() {
-        super();
-    }
-
-    @Before
+public class EndpointTaskTest extends TestCase{
+    private static final String result = "My Own Joke";
+    private String finalresult = "dsas";
+    @Override
     public void setUp() throws Exception {
-
-
-    }
-
-    @Test
-    public void name() throws Exception {
-
-        new EndpointTask().execute(new Pair<Context, String>(Application.class.newInstance().getApplicationContext(), JavaJokes.Joker()));
-
-
-        assertTrue(true);
-    }
-
-    @Test
-    public void doInBackground() throws Exception {
+        super.setUp();
 
     }
 
-    @Test
-    public void onPostExecute() throws Exception {
-
+    public void testName() throws Exception {
+     //   assertTrue("Match",result.equals("My Own Joke"));
+        EndpointTask endpointTask = new EndpointTask();
+      endpointTask.setListener(new EndpointTask.TaskCompleteListener() {
+            @Override
+            public void OnComplete(String message) {
+                finalresult = message;
+                assertTrue("Joke",message.equals(result));
+            }
+        }).execute("xyz");
+        System.out.println(finalresult);
     }
 
-
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+    }
 
 
 }
