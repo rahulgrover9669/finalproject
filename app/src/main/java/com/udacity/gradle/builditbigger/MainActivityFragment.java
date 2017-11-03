@@ -70,13 +70,24 @@ public class MainActivityFragment extends Fragment {
              //   Toast.makeText(getActivity(), JavaJokes.Joker().toString(), Toast.LENGTH_SHORT).show();
 
              //   new EndpointsAsyḥncTask().execute(new Pair<Context, String>(getActivity(), "Rahul"));
-                new EndpointTask().execute(new Pair<Context, String>(getActivity(),JavaJokes.Joker()));
-                try {
+           //     new EndpointTask().execute(new Pair<Context, String>(getActivity(),JavaJokes.Joker()));
+         //       try {
 
-                } catch (Exception e) {
-                    Log.d("TAG", "ERROR HERE" + e.toString());
-                }
+           //     } catch (Exception e) {
+             //       Log.d("TAG", "ERROR HERE" + e.toString());
+               // }
 
+                
+                
+                EndpointTask endpointTask = new EndpointTask();
+                endpointTask.setListener(new EndpointTask.TaskCompleteListener() {
+                    @Override
+                    public void OnComplete(String message) {
+                        Log.d("TASG","RESULTTTTT1"+message);
+                    }
+                }).execute();
+                
+                
 
             }
         });
