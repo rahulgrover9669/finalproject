@@ -20,13 +20,13 @@ import java.io.IOException;
  * Created by Rahul on 22/10/2017.
  */
 
-public class EndpointTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointTask extends AsyncTask<String,String, String> {
 
     private static com.example.rahul.myapplication.backend.myApi.MyApi myApiService = null;
     private Context context;
 
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
+    protected String doInBackground(String... params) {
 
         if (myApiService == null) {  // Only do this once
             com.example.rahul.myapplication.backend.myApi.MyApi.Builder builder = new com.example.rahul.myapplication.backend.myApi.MyApi.Builder(AndroidHttp.newCompatibleTransport(),
@@ -47,8 +47,8 @@ public class EndpointTask extends AsyncTask<Pair<Context, String>, Void, String>
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
+    //    context = params[0].first;
+      //  String name = params[0].second;
 
         try {
             return myApiService.sayHi(name).execute().getData();
@@ -63,10 +63,10 @@ public class EndpointTask extends AsyncTask<Pair<Context, String>, Void, String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-       Toast.makeText(this.context, s, Toast.LENGTH_LONG).show();
-              Intent intent = new Intent(context, MainActivity2.class);
-        intent.putExtra("joker", s);
-        context.startActivity(intent);
-        Toast.makeText(this.context, "RESULT", Toast.LENGTH_LONG).show();
+    //   Toast.makeText(this.context, s, Toast.LENGTH_LONG).show();
+      //        Intent intent = new Intent(context, MainActivity2.class);
+      //  intent.putExtra("joker", s);
+      //  context.startActivity(intent);
+      //  Toast.makeText(this.context, "RESULT", Toast.LENGTH_LONG).show();
     }
 }
